@@ -31,3 +31,35 @@ FROM
     silver.crm_cust_info;
 
 select * from silver.crm_cust_info;
+
+
+-- silver.crm_prd_info
+
+SELECT 
+    prd_id, COUNT(*)
+FROM
+    silver.crm_prd_info
+GROUP BY prd_id
+HAVING COUNT(*) > 1 OR prd_id IS NULL
+    OR prd_id = 0;
+    
+-- Check for NULLS or Negative Numbers
+SELECT 
+    prd_cost
+FROM
+    bronze.crm_prd_info
+WHERE
+    prd_cost <= 0 OR prd_cost IS NULL;
+    
+-- Check for Invalid Date Orders
+SELECT 
+    *
+FROM
+    silver.crm_prd_info
+WHERE
+    prd_end_dt < prd_start_dt;
+    
+SELECT 
+    count(*)
+FROM
+    silver.crm_prd_info;

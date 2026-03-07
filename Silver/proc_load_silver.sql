@@ -5,7 +5,7 @@ INSERT INTO silver.crm_cust_info(
              cst_key,
              cst_firstname,
              cst_lastname,
-             cst_material_status,
+             cst_marital_status,
              cst_gndr,
              cst_create_data)
 SELECT cst_id,
